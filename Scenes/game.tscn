@@ -1,3 +1,49 @@
-[gd_scene format=3 uid="uid://d0ayljbyi1s1b"]
+[gd_scene load_steps=4 format=3 uid="uid://d0ayljbyi1s1b"]
+
+[ext_resource type="PackedScene" uid="uid://d3h1ro8m8ka2l" path="res://Scenes/player_ship.tscn" id="1_ebmjs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebmjs"]
+size = Vector2(20, 199)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxrlw"]
+size = Vector2(417, 205)
 
 [node name="Game" type="Node2D"]
+
+[node name="PlayerShip" parent="." instance=ExtResource("1_ebmjs")]
+position = Vector2(164, 170)
+
+[node name="ScreenBorderLeft" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="BorderCollision" type="CollisionShape2D" parent="ScreenBorderLeft"]
+position = Vector2(0, 89.5)
+shape = SubResource("RectangleShape2D_ebmjs")
+
+[node name="ScreenBorderRight" type="StaticBody2D" parent="."]
+position = Vector2(319, 0)
+collision_layer = 4
+collision_mask = 3
+
+[node name="BorderCollision" type="CollisionShape2D" parent="ScreenBorderRight"]
+position = Vector2(0, 89.5)
+shape = SubResource("RectangleShape2D_ebmjs")
+
+[node name="DestroyZone" type="Area2D" parent="."]
+position = Vector2(155, 199)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyZone"]
+position = Vector2(-1, 93)
+shape = SubResource("RectangleShape2D_qxrlw")
+
+[node name="DestroyZone2" type="Area2D" parent="."]
+position = Vector2(155, -205)
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DestroyZone2"]
+position = Vector2(-1, 93)
+shape = SubResource("RectangleShape2D_qxrlw")
